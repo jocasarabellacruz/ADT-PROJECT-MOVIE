@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+.App-link {
+  color: #515151;
+}
+
+
+
+/* .moon{
+  border-radius: 50%;
+  background-color: darkgray;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  bottom: 0;
+  animation-name: moon-sun;
+  animation-duration: 3s;  
+  animation-fill-mode: backwards;
+} */
+
+.sun{
+  border-radius: 50%;
+  background-color: yellow;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  bottom: 0;
+  animation-name: sun-moon;
+  animation-duration: 3s;  
+  animation-fill-mode: backwards;
+}
+
+@keyframes sun-moon {
+  from {top: 0px;}
+  to {top: 500px; background-color: darkgray;}
+}
+
+@keyframes moon-sun {
+  from {top: 0px; background-color: red;}
+  to {top: 200px;}
+}
+
