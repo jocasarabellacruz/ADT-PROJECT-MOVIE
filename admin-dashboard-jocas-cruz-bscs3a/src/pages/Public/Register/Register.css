@@ -1,0 +1,81 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .register-container form {
+    padding: 3rem 2rem;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    max-width: 500px; 
+    width: 100%;
+  }
+  
+  .register-container form div {
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .register-container form label {
+    margin-right: 1rem;
+    font-weight: bold;
+    min-width: 120px;
+    text-align: right;
+  }
+  
+  .register-container form input {
+    flex: 1; 
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .show-password {
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-left: 120px; 
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  .submit-container {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
