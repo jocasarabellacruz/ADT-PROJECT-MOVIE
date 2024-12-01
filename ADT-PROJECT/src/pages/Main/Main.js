@@ -5,37 +5,34 @@ import './Main.css';
 function Main() {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     navigate('/');
   };
 
   useEffect(() => {
-    if (
-      accessToken === undefined ||
-      accessToken === '' ||
-      accessToken === null
-    ) {
+    if (!accessToken) {
       handleLogout();
     }
-  }, []);
+  }, [accessToken]);
+
   return (
-    <div className='Main'>
-      <div className='container'>
-        <div className='navigation'>
+    <div className="Main">
+      {/* Navbarr */}
+      <div className="container">
+        <div className="navigation">
           <ul>
-            {/* <li>
-              <a href='/main/dashboard'>Dashboard</a>
-            </li> */}
-            <li>
-              <a href='/main/movies'>Movies</a>
-            </li>
-            <li className='logout'>
-              <a onClick={handleLogout}>Logout</a>
-            </li>
+            <li><a href="/main/home">Home</a></li>
+            <li><a href="/main/favorites">Favorites</a></li>
+            <li><a href="/main/search">Search</a></li>
+            <li><a href="/main/settings">Settings</a></li>
+            <li className="logout" onClick={handleLogout}>Logout</li>
           </ul>
         </div>
-        <div className='outlet'>
+
+        {/* Content */}
+        <div className="outlet">
           <Outlet />
         </div>
       </div>
