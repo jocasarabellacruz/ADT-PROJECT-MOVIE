@@ -7,9 +7,10 @@ const Lists = () => {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
   const [lists, setLists] = useState([]);
+  const [showModal, setShowModal] = useState(false); // To control modal visibility
+  const [selectedMovie, setSelectedMovie] = useState(null); // Store selected movie for delete/edit
 
   const getMovies = () => {
-    // Get the movies from the API or database
     axios.get('/movies').then((response) => {
       setLists(response.data);
     });
@@ -29,12 +30,36 @@ const Lists = () => {
           },
         })
         .then(() => {
-          setLists(lists.filter((movie) => movie.id !== id)); // Update the list after deleting
+          setLists(lists.filter((movie) => movie.id !== id));
         })
         .catch((error) => {
           console.error(error);
           alert('Error deleting the movie!');
         });
+    }
+  };
+
+  const handleOpenModal = (movie) => {
+    setSelectedMovie(movie); // Set the movie to delete or edit
+    setShowModal(true); // Show modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Close modal
+    setSelectedMovie(null);
+  };
+
+  const handleConfirmDelete = () => {
+    if (selectedMovie) {
+      handleDelete(selectedMovie.id); // Call delete function
+      handleCloseModal(); // Close modal after deletion
+    }
+  };
+
+  const handleEdit = () => {
+    if (selectedMovie) {
+      navigate(`/main/movies/form/${selectedMovie.id}`);
+      handleCloseModal();
     }
   };
 
@@ -45,32 +70,47 @@ const Lists = () => {
           Create New Movie
         </button>
       </div>
-      <div className="table-container">
-        <table className="movie-lists">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+
+      <div className="movie-list-container">
+        {lists.length === 0 ? (
+          <p>No movies available</p>
+        ) : (
+          <div className="movie-grid">
             {lists.map((movie) => (
-              <tr key={movie.id}>
-                <td>{movie.id}</td>
-                <td>{movie.title}</td>
-                <td>
-                  <button type="button" onClick={() => navigate(`/main/movies/form/${movie.id}`)}>
-                    Edit
-                  </button>
-                  <button type="button" onClick={() => handleDelete(movie.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              <div className="movie-card" key={movie.id}>
+                <img
+                  className="movie-poster"
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <div className="movie-info">
+                  <h4>{movie.title}</h4>
+                </div>
+
+                {/* Small button in the top-right corner */}
+                <button
+                  className="action-button"
+                  onClick={() => handleOpenModal(movie)} // Open modal with selected movie
+                >
+                  &#x270E; {/* Pencil icon for edit */}
+                </button>
+
+                {/* Modal for Delete / Edit */}
+                {showModal && selectedMovie === movie && (
+                  <div className="modal">
+                    <div className="modal-content">
+                      <h4>{selectedMovie.title}</h4>
+                      <p>Do you want to edit or delete this movie?</p>
+                      <button onClick={handleEdit}>Edit</button>
+                      <button onClick={handleConfirmDelete}>Delete</button>
+                      <button onClick={handleCloseModal}>Cancel</button>
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        )}
       </div>
     </div>
   );
