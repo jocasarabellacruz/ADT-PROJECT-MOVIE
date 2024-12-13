@@ -1,0 +1,67 @@
+/* HomePage.css */
+
+.home-page {
+    display: flex; /* Sidebar on the left and main content on the right */
+    height: 100%; /* Full height for the page */
+    /*border: 2px solid black;*/
+  }
+  
+  .sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+    background-color: #f4f4f4; /* Light background color */
+    
+  }
+  
+  .main-content {
+    flex: 1; /* Takes up remaining space */
+    display: flex;
+    flex-direction: column; /* Arrange top and bottom sections vertically */
+  }
+  
+  .top-row {
+    display: flex;
+    justify-content: space-between; /* Space between featured movies and search bar */
+    
+  }
+  
+  .bottom-row {
+    display: flex;
+   
+    
+  }
+  
+  .featured {
+    flex: 3;
+    /* border: 2px solid black; */
+  }
+  
+  .search {
+    flex: 1;
+    /* border: 2px solid black; */
+  }
+  
+  .main-movies {
+    flex: 3; /* Main movies panel takes more space */
+    /* border: 2px solid black; */
+  }
+  
+  .favorites {
+    flex: 1; /* Favorites panel takes equal space */
+    /* border: 2px solid black; */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .home-page {
+      flex-direction: column; /* Stack everything vertically on small screens */
+    }
+  
+    .top-row {
+      flex-direction: column; /* Stack featured and search bar */
+    }
+  
+    .bottom-row {
+      flex-direction: column; /* Stack main movies and favorites panel */
+      gap: 10px;
+    }
+  }
+  

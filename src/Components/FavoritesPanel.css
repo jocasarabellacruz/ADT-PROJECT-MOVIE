@@ -1,0 +1,69 @@
+/* FavoritesPanel.css */
+
+/* Panel container */
+.favorites-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #F8B319; /* Adjust background color */
+  margin: 20px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* Header for the Favorites section */
+.favorites-header {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+}
+
+/* Container for favorite movie cards */
+.favorites-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;
+}
+
+/* Individual movie card */
+.favorite-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Movie poster image */
+.favorite-poster {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Movie title */
+.favorite-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* If there are no favorites */
+.favorites-panel:empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .favorite-card {
+    width: 100%; /* Full width for smaller screens */
+  }
+}

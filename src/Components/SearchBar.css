@@ -1,0 +1,63 @@
+/* SearchBar.css */
+
+/* Outer panel container */
+.search-bar-panel {
+  display: flex;
+  justify-content: center;
+  align-items:start;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #161616; /* Dark background color */
+  padding: 10px;
+  height: 87%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Inner search bar container */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px; /* Limiting the width */
+  background-color: #fff;
+  padding: 5px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+/* Input field styles */
+.search-bar input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 80%; /* Take most of the space */
+  border: 1px solid #ccc;
+ 
+  margin-right: 10px; /* Space between input and button */
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: #F8B319; /* Highlight border on focus */
+}
+
+/* Search button styles */
+.search-btn {
+  background-color: #F8B319;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border: none;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #dc9b10; /* Darker blue on hover */
+}
+
+/* Optional: Focus state for the button */
+.search-btn:focus {
+  outline: none;
+}
+
