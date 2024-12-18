@@ -83,6 +83,14 @@ $table_queries = [
         official BOOLEAN DEFAULT FALSE,
         FOREIGN KEY (movieId) REFERENCES Movies(movieId),
         FOREIGN KEY (userId) REFERENCES Users(userId)
+    )",
+    
+    "CREATE TABLE IF NOT EXISTS Favorites (
+        favoriteId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        movieId INT NOT NULL,
+        userId INT NOT NULL,
+        FOREIGN KEY (movieId) REFERENCES Movies(movieId),
+        FOREIGN KEY (userId) REFERENCES Users(userId)
     )"
 ];
 
