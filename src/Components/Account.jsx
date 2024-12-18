@@ -12,7 +12,7 @@ const Account = () => {
         const fetchUsername = async () => {
             try {
                 const response = await axios.get("http://localhost/get_user");
-                setUsername(response.data.username);
+                setUsername(response.data.Name);
             } catch (err) {
                 setError('Failed to fetch username.');
             } finally {
@@ -29,7 +29,7 @@ const Account = () => {
 
     return (
         <div className='accPanel'>
-            <h1 className='accName'>Hello, Tite {username}!</h1>
+            <h1 className='accName'>Hello, {username}!</h1>
         </div>
     );
 };

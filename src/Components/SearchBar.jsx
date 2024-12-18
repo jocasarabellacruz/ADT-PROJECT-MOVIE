@@ -1,27 +1,20 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import './SearchBar.css';
-import axios from 'axios';
 
-axios.defaults.withCredentials = true;
+const SearchBar = ({ onSearch, searchTerm }) => {
+  const [search, setSearch] = useState(searchTerm || '');
 
-const SearchBar = ({ onSearch, onSubmit }) => {
-  const [search, setSearch] = useState('');
-  const handleInputChange = (e) => onSearch(e.target.value);
-
-  const handleSearchClick = () => {
-    searchMovies();
-    //alert(search);
-    //onSubmit(); // Trigger the search when button is clicked
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
   };
 
-  const searchMovies = async () => {
-    const data = { search: search };
-    try {
-      const response = await axios.post("http://localhost/search_movie", data);
+  const handleSearch = () => {
+    onSearch(search);
+  };
 
-      console.log('Search:', response.data);
-    } catch (err) {
-      console.error(err);
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
   };
 
@@ -31,9 +24,14 @@ const SearchBar = ({ onSearch, onSubmit }) => {
         <input 
           type="text" 
           placeholder="Search movies..." 
-          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
         />
-        <button className="search-btn" onClick={handleSearchClick}>
+        <button 
+          className="search-button"
+          onClick={handleSearch}
+        >
           Search
         </button>
       </div>
