@@ -1,35 +1,70 @@
 .featured-movies {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px 62px;
-    background-color: #F8B319;
-    border-radius: 20px;
-    
-  }
-  
-.featured-movies h1{
-  font-size: 28px;
+  padding: 20px;
+  background-color: #FFB2CF;
+  border-radius: 20px;
+  text-align: center;
+  margin: 20px;
+  max-width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-  .carousel-slide {
-    text-align: center;
-  }
-  
-  .carousel-poster {
-    width: 100%;
-    height: auto;
-    max-height: 280px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .carousel-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
-  
+.featured-movies h1 {
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: start;
+  border-bottom: 2px solid #282828;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.featured-movies-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* Ensures all cards are the same height */
+}
+
+.featured-movie-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 200px; /* Adjust as necessary */
+  height: 450px; /* Ensure consistent height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Align content evenly */
+}
+
+.featured-movie-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.featured-movie-posterr {
+  width: 100%;
+  height: 300px; /* Set a fixed height for the poster */
+  object-fit: cover; /* Maintain aspect ratio and fill the area */
+  border-bottom: 2px solid #282828;
+}
+
+.featured-movie-title {
+  font-size: 16px;
+  padding: 10px;
+  color: #333;
+  flex-grow: 1; /* Allows the title area to fill space if needed */
+  display: flex;
+  align-items: center; /* Center align text vertically */
+  justify-content: center; /* Center align text horizontally */
+  text-align: center; /* Ensure multi-line titles look good */
+}
+
+.loading,
+.error {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+

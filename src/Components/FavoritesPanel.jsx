@@ -15,7 +15,7 @@ const FavoritesPanel = ({ favorites = [] }) => {
       <div className="favorites-cards">
         {favorites.map((movie) => (
           <div key={movie.id} className="favorite-card">
-            <img src={movie.poster} alt={movie.title} className="favorite-poster" />
+            <img src={`https://image.tmdb.org/t/p/w500${movie.posterPath || 'default-poster.jpg'}`} alt={movie.title} className="favorite-poster" />
             <h3 className="favorite-title">{movie.title}</h3>
           </div>
         ))}

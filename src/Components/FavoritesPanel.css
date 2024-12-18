@@ -4,7 +4,7 @@
 .favorites-panel {
   display: flex;
   flex-direction: column;
-  background-color: #F8B319; /* Adjust background color */
+  background-color: #282828; /* Adjust background color */
   margin: 20px;
   border-radius: 20px;
   padding: 20px;
@@ -14,9 +14,9 @@
 .favorites-header {
   font-size: 2rem;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   margin-bottom: 20px;
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #FFB2CF;
   padding-bottom: 10px;
 }
 

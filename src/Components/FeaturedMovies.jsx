@@ -1,65 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 import './FeaturedMovies.css';
+import axios from 'axios';
 
 const FeaturedMovies = () => {
-  const [featured, setFeatured] = useState([]); 
-  const [loading, setLoading] = useState(true); 
+  const [featured, setFeatured] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchFeaturedMovies = async () => {
-      try {
-        const response = await fetch('/featured_movie'); 
-        const data = await response.json();
-
   
-        if (response.ok) {
-          setFeatured(data); 
+  const searchFeatured = async () => {
+      try {
+        const response = await axios.get("http://localhost/get_featured");
+        //console.log('API Response:', response.data); // Log API response
+        if (response.data) {
+            setFeatured(response.data);
         } else {
-          throw new Error('Failed to fetch featured movies');
+            setFeatured([]);
+          setError('No results found.');
         }
+        setError(null);
       } catch (err) {
-        setError(err.message); 
-      } finally {
-        setLoading(false); 
+        setError('Error fetching data. Please try again.');
+        console.error(err);
       }
     };
 
-    fetchFeaturedMovies();
-  }, []); 
+    useEffect(() => {
+        searchFeatured();
+    }, []); 
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    useEffect(() => {
+        if (featured.length > 0) {
+        console.log('Featured:', featured);
+        }
+    }, [featured]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  // Slick slider settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-  };
-
+  // Render movies in a single row
   return (
     <div className="featured-movies">
       <h1>Featured Movies</h1>
-      <Slider {...settings}>
-        {featured.map((movie) => (
-          <div key={movie.movieId} className="carousel-slide">
-            <img className="carousel-poster" src={movie.posterPath} alt={movie.title} />
-            <h3 className="carousel-title">{movie.title}</h3>
+      <div className="featured-movies-grid">
+        {featured.slice(0, 6).map((movie) => (
+          <div key={movie.movieId} className="featured-movie-card">
+            <img 
+              className="featured-movie-posterr"
+              src={`${movie.posterPath || 'default-poster.jpg'}`}
+              alt={movie.title}
+            />
+            <h3 className="featured-movie-title">{movie.title}</h3>
           </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 };
