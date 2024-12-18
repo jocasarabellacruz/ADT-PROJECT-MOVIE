@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"));
 
     if(isset($data->id)) {
+
+        //DATAS
+
         $userId = $_SESSION["USER_ID"];
         $tmbdId = $data->id;
         $title = $data->title;
@@ -19,14 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $popularity = $data->popularity;
         $releaseDate = $data->releaseDate;
         $voteAverage = $data->voteAverage;
-        $backdropPath = "https://image.tmdb.org/t/p/original" . $data->backdropPath;
-        $posterPath = "https://image.tmdb.org/t/p/original" . $data->posterPath;
+        $backdropPath = $data->backdropPath;
+        $posterPath = $data->posterPath;
+        $isFeatured = $data->isFeatured;
 
-        $stmt = $conn->prepare("INSERT INTO movies (userId, tmdbId, title, overview, popularity, releaseDate, voteAverage, backdropPath, posterPath) VALUES (?, ?, ?, ?, ?, ? ,? ,? ,?)");
-        $stmt->bind_param("iissdsdss", $userId, $tmbdId, $title, $overview, $popularity, $releaseDate, $voteAverage, $backdropPath, $posterPath);
+        //ADD MOVIES
+
+        $stmt = $conn->prepare("INSERT INTO movies (userId, tmdbId, title, overview, popularity, releaseDate, voteAverage, backdropPath, posterPath, isFeatured) VALUES (?, ?, ?, ?, ?, ?, ? ,? ,? ,?)");
+        $stmt->bind_param("iissdsdssi", $userId, $tmbdId, $title, $overview, $popularity, $releaseDate, $voteAverage, $backdropPath, $posterPath, $isFeatured);
         $stmt->execute();
 
         echo json_encode(['status' => 'success', 'message' => 'Movie Added Successfully!', 'tmbdId' => $tmbdId]);
+
+        //FIND MOVIE ID
 
         $stmt = $conn->prepare("Select movieId from movies where tmdbId = ?");
         $stmt->bind_param("i", $tmbdId);
@@ -39,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = $result->fetch_assoc();
             $movieId = $row['movieId'];
         }
+
+        //ADD CAST
 
         if(isset($data->cast)) {
             //$casts = json_decode($data->cast, True);
@@ -54,10 +64,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
             }
         }
+
+        //ADD VIDEOS
+
+        if(isset($data->videos)) {
+            //$casts = json_decode($data->cast, True);
+            $videos = $data->videos;
+            foreach ($videos as $video) {
+
+                $url = $video->key;
+                $name = $video->name;
+                $site = $video->site;
+                $videoKey = $video->key;
+                $videoType = $video->type;
+                $official = $video->official;
+
+                $stmt = $conn->prepare("INSERT INTO videos (movieId, userId, url, name, site, videoKey, videoType, official) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("iisssssi", $movieId, $userId, $url, $name, $site, $videoKey, $videoType, $official);
+                $stmt->execute();
+            }
+        }
+
+
+        //ADD PHOTOS
+
+        if(isset($data->photos)) {
+            //$casts = json_decode($data->cast, True);
+            $photos = $data->photos;
+            foreach ($photos as $photo) {
+
+                $url = $photo->file_path;
+                $description = "photo";
+
+                $stmt = $conn->prepare("INSERT INTO photos (movieId, userId, url, description) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("iiss", $movieId, $userId, $url, $description);
+                $stmt->execute();
+            }
+        }
+
     }
-
-
-
 
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid Method.']);
