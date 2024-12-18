@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $user = $result->fetch_assoc();
         }
 
-        echo json_encode(['status' => 'success', 'UserID' => $_SESSION["USER_ID"], "Role" => $user["role"]]);
+        echo json_encode(['status' => 'success', 'UserID' => $_SESSION["USER_ID"], "Role" => $user["role"], "Name" => $user["name"]]);
     }
 }
 
