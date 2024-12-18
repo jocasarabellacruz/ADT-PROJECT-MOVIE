@@ -16,6 +16,24 @@ switch($user_link){
     case "/admin_search":
         require("restapi/admin_search.php");
         break;
+    case "/get_movies":
+        require("restapi/get_movies.php");
+        break;
+    case "/get_featured":
+        require("restapi/get_featured.php");
+        break;
+    case "/admin_edit":
+        require("restapi/admin_edit.php");
+        break;
+    case "/get_user":
+        require("restapi/get_user.php");
+        break;
+    case "/search_movie":
+        require("restapi/search_movie.php");
+        break;
+    case "/add_movie":
+        require("restapi/add_movie.php");
+        break;
     default:
         http_response_code(404);
         break;
