@@ -1,67 +1,70 @@
-/* HomePage.css */
-
 .home-page {
-    display: flex; /* Sidebar on the left and main content on the right */
-    height: 100%; /* Full height for the page */
-    /*border: 2px solid black;*/
-  }
+  display: flex; /* Sidebar on the left and main content on the right */
+  height: 100vh; /* Full height for the page */
+  background-color: #121212; /* Dark background */
+}
+
+.sidebar {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #f4f4f4; /* Light background color */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.main-content {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column; /* Arrange top and bottom sections vertically */
+  padding: 20px; /* Add padding for spacing */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center align items vertically */
+ 
+}
+
+.bottom-row {
+  display: flex; /* Arrange bottom row content horizontally */
+  gap: 20px; /* Space between the main-movies and favorites */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
   
-  .sidebar {
-    width: 250px; /* Fixed width for the sidebar */
-    background-color: #f4f4f4; /* Light background color */
-    
+}
+
+.account{
+  flex:1;
+}
+
+.search{
+  flex: 3;
+}
+
+.main-movies {
+  flex: 3; /* Main movies panel takes more space */
+}
+
+.favorites {
+  flex: 1; /* Favorites panel takes less space */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .home-page {
+    flex-direction: column; /* Stack everything vertically */
   }
-  
+
   .main-content {
-    flex: 1; /* Takes up remaining space */
-    display: flex;
-    flex-direction: column; /* Arrange top and bottom sections vertically */
+    padding: 10px; /* Reduce padding for smaller screens */
   }
-  
+
   .top-row {
-    display: flex;
-    justify-content: space-between; /* Space between featured movies and search bar */
-    
+    flex-direction: column; /* Stack items in the top row */
+    margin-bottom: 10px; /* Adjust spacing */
   }
-  
+
   .bottom-row {
-    display: flex;
-   
-    
+    flex-direction: column; /* Stack panels vertically */
+    gap: 20px; /* Space between rows */
   }
-  
-  .featured {
-    flex: 3;
-    /* border: 2px solid black; */
-  }
-  
-  .search {
-    flex: 1;
-    /* border: 2px solid black; */
-  }
-  
-  .main-movies {
-    flex: 3; /* Main movies panel takes more space */
-    /* border: 2px solid black; */
-  }
-  
-  .favorites {
-    flex: 1; /* Favorites panel takes equal space */
-    /* border: 2px solid black; */
-  }
-  
-  @media screen and (max-width: 768px) {
-    .home-page {
-      flex-direction: column; /* Stack everything vertically on small screens */
-    }
-  
-    .top-row {
-      flex-direction: column; /* Stack featured and search bar */
-    }
-  
-    .bottom-row {
-      flex-direction: column; /* Stack main movies and favorites panel */
-      gap: 10px;
-    }
-  }
-  
+}
