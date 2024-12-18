@@ -1,4 +1,107 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: flex-start; /* Start from the top */
+  background: linear-gradient(135deg, #ee78bb, #e656a3, #b71f64);
+  padding: 20px; /* Add padding for breathing space */
+}
+
+.search-card {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* Space below the search card */
+}
+
+.search-card h1 {
+  text-align: center;
+}
+
+.input {
+  width: 70%;
+  padding: 12px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  margin-right: 10px;
+}
+
+.input:focus {
+  border-color: #e656a3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(230, 86, 163, 0.1);
+}
+
+.search-button {
+  background: #e656a3;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.search-button:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 20px; /* Space between movie cards */
+  justify-content: center; /* Center movie cards */
+  padding: 20px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  width: 200px; /* Fixed card width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
 .movie-poster {
-    width: 150px; 
-    height: auto;
-  }
+  width: 100%; /* Fit poster to card width */
+  height: 300px; /* Fixed height for uniformity */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.movie-card h2 {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.movie-card p {
+  font-size: 14px;
+  color: #666;
+  height: 60px; /* Limit description height */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis;
+}
