@@ -1,6 +1,6 @@
 .featured-movies {
   padding: 20px;
-  background-color: #FFB2CF;
+  background-color: #282828;
   border-radius: 20px;
   text-align: center;
   margin: 20px;
@@ -8,12 +8,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.featured-movies .featHeader{
+  border-bottom: 2px solid #FFB2CF;
+}
+
 .featured-movies h1 {
   font-size: 28px;
   color: #fff;
   margin-bottom: 20px;
   text-align: start;
-  border-bottom: 2px solid #282828;
+
   padding-bottom: 10px;
   width: 100%;
 }
