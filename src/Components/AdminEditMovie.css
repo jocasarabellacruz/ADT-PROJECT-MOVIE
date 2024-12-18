@@ -1,0 +1,409 @@
+/* General layout styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  height: 100vh;
+  background: #333;
+  justify-content: center;
+}
+
+.wholecont{
+    background-color: #1a1a1d;
+    width: 100%;
+  height: 100%; 
+}
+
+
+
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+} */
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+
+/* Section Headers */
+h1,
+h2 {
+  color: #444;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+/* Grouped elements */
+.cast-item,
+.video-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.cast-item label,
+.video-item label {
+  margin-top: 10px;
+}
+
+.cast-item input,
+.poster-item input,
+.video-item input {
+  margin-top: 5px;
+}
+
+/* Add new items section */
+.add-section {
+  border-top: 2px solid #ccc;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* Error message styles */
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Loading styles */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+
+.cast-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* AdminEditMovie.css */
+.movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin: 50px;
+  }
+  
+  .backdrop {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie-cardto {
+    display: flex;
+    flex-direction: row; /* Align children side by side */
+    align-items: flex-start; /* Align items at the top */
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    gap: 20px; /* Space between poster and details */
+    margin-top: 30px;
+    border: 10px solid #FFB2CF;
+  }
+  
+  .poster-container {
+    flex: 1; /* Make the poster take up one part of the space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .details {
+    flex: 2; /* Make details take up two parts of the space */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+  }
+  
+  .poster-img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .movietite {
+    margin: 0;
+    color: #fff;
+    font-size: 80px;
+  }
+
+  .details .overview{
+    font-size: 18px;
+  }
+  
+  .details p {
+    margin: 10px 0;
+  }
+  
+  .cast-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .cast-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cast-img {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+  }
+  
+  h2 {
+    margin-top: 20px;
+    color: #fff;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
+  .movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cast-header{
+    font-size: 40px;
+    color: #fff;
+  }
+  .cast-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Create a grid with responsive columns */
+    gap: 20px; /* Space between cards */
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .cast-item {
+    background-color: #FFB2CF;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cast-item:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .cast-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cast-item label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .cast-item input {
+    margin-top: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .addCastMember {
+    background-color: #FFB2CF;
+    width: 90%; /* Adjust width to ensure responsiveness */
+    max-width: 600px; /* Prevent it from becoming too wide */
+    border-radius: 5px;
+    margin: 0 auto; /* Center the form */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some elevation for a better look */
+  }
+
+  .addCastHead{
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .addCastMember input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+  }
+
+  
+  .formGroupCast {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .left, .right {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #fe689d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Creates a responsive grid */
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+  }
+  
+  .photo-card {
+    background-color: #FFB2CF;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .poster-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures the image fills the card while maintaining aspect ratio */
+  }
+  
+  .photo-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Slight hover effect */
+    transform: translateY(-5px); /* Lift effect on hover */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+  }
+  
+  .video-card {
+    flex: 1 1 600px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    background: #FFB2CF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .video-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .video-frame {
+    width: 100%;
+    height: 300px; /* Increased height for a larger display */
+    border: none;
+  }
+  
+  .video-title {
+    padding: 16px;
+    text-align: center;
+    background: #FFB2CF;
+    border-top: 1px solid #ddd;
+    
+  }
+  
+  .video-title-input {
+    width: calc(100% - 20px); /* Ensure input fits within the card */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 6px;
+    box-sizing: border-box; /* Prevent overlapping due to box model issues */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+.addBtn{
+  background-color: #fe689d;
+  transition: ease-in 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  .addBtn:hover{
+    background-color: #f54784;
+  }
