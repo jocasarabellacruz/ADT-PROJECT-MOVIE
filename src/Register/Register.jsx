@@ -6,10 +6,12 @@ import { useNavigate, Link } from 'react-router-dom';
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setconfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
   const [contactNo, setContactNo] = useState('');
+  const [message, setMessage] = useState('');
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -48,6 +50,9 @@ function Register() {
       case 'contactNo':
         setContactNo(value);
         break;
+      case 'confirmpassword':
+        setconfirmPassword(value);
+        break;
       default:
         break;
     }
@@ -80,17 +85,23 @@ function Register() {
     setStatus('loading');
 
     try {
-      const res = await axios.post('/admin/register', data);
-      localStorage.setItem('accessToken', 'true');
-      localStorage.setItem('userId', res.data.u_id);
-      navigate('/main/movies');
-    } catch (e) {
-      const errorMessage = e.response?.data?.message || 'Registration failed';
-      alert(errorMessage);
-    } finally {
-      setStatus('idle');
-    }
-  };
+        // Send POST request to PHP
+        const response = await axios.post('http://localhost/register', {
+          name: firstName,
+          email: email,
+          password: password,
+          conf_pass: confirmpassword
+        });
+  
+        // Handle response from PHP
+        console.log(response.data);  // Assuming the PHP response contains a 'message' field
+        navigate("/")
+  
+      } catch (error) {
+        console.error('Error sending request:', error);
+        setMessage('An error occurred while sending the request.');
+      }
+    };
 
   return (
     <div className="register-container">
@@ -101,7 +112,7 @@ function Register() {
         </div>
         
         <form onSubmit={handleRegister} className="register-form">
-          <div className="form-group">
+          <div className="form-group2">
             <input
               ref={emailRef}
               type="email"
@@ -109,11 +120,23 @@ function Register() {
               onChange={(e) => handleOnChange(e, 'email')}
               placeholder="Email"
               required
-              className="form-input"
+              className="form-input2"
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group2">
+            <input
+              ref={fNameRef}
+              type="text"
+              value={firstName}
+              onChange={(e) => handleOnChange(e, 'firstName')}
+              placeholder="Name"
+              required
+              className="form-input2"
+            />
+          </div>
+
+          <div className="form-group2">
             <input
               ref={passwordRef}
               type={isShowPassword ? 'text' : 'password'}
@@ -121,61 +144,26 @@ function Register() {
               onChange={(e) => handleOnChange(e, 'password')}
               placeholder="Password"
               required
-              className="form-input"
+              className="form-input2"
             />
             <button
               type="button"
-              className="password-toggle"
+              className="password-toggle2"
               onClick={toggleShowPassword}
             >
               {isShowPassword ? '👁️' : '👁️‍🗨️'}
             </button>
           </div>
 
-          <div className="form-group">
+          <div className="form-group2">
             <input
-              ref={fNameRef}
-              type="text"
-              value={firstName}
-              onChange={(e) => handleOnChange(e, 'firstName')}
-              placeholder="First Name"
+              ref={passwordRef}
+              type={isShowPassword ? 'text' : 'password'}
+              value={confirmpassword}
+              onChange={(e) => handleOnChange(e, 'confirmpassword')}
+              placeholder="Confirm Password"
               required
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              ref={mNameRef}
-              type="text"
-              value={middleName}
-              onChange={(e) => handleOnChange(e, 'middleName')}
-              placeholder="Middle Name (Optional)"
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              ref={lNameRef}
-              type="text"
-              value={lastName}
-              onChange={(e) => handleOnChange(e, 'lastName')}
-              placeholder="Last Name"
-              required
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              ref={CNoRef}
-              type="text"
-              value={contactNo}
-              onChange={(e) => handleOnChange(e, 'contactNo')}
-              placeholder="Contact Number"
-              required
-              className="form-input"
+              className="form-input2"
             />
           </div>
 
@@ -192,8 +180,8 @@ function Register() {
           </button>
         </form>
 
-        <div className="login-prompt">
-          <p>Already have an account? <Link to="/" className="login-link">Sign In</Link></p>
+        <div className="login-prompt2">
+          <p>Already have an account? <Link to="/" className="login-link2">Sign In</Link></p>
         </div>
       </div>
     </div>
