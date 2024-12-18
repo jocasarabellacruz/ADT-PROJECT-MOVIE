@@ -2,7 +2,7 @@
 session_start();
 
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, Cookie");
 header("Access-Control-Allow-Credentials: true");
@@ -13,31 +13,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"));
 
     // Check if data is valid
-    if (isset($data->username) && isset($data->password)) {
-        $username = $data->username;
+    if (isset($data->email) && isset($data->password)) {
+        $email = $data->email;
         $password = $data->password;
 
-        $stmt = $conn->prepare("Select * from users where Username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $conn->prepare("Select * from users where email = ?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result(); // Get the result of the query
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            if($user["Password"] == $password){
+            if($user["password"] == $password){
 
-                $_SESSION["USER_ID"] = $user["UserID"];
+                $_SESSION["USER_ID"] = $user["userId"];
                 $uid = $_SESSION["USER_ID"];
-                echo json_encode(["status" => "success", "message" => "Data received", "name" => $username, "email" => $password, "u_id" => $uid]);
+                echo json_encode(["status" => "success", "message" => "Data received", "email" => $email, "pass" => $password, 'ID' => $uid]);
 
             } else {
 
-                echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $username, "email" => $password]);
+                echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $email, "email" => $password]);
 
             }
         } else {
 
-            echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $username, "email" => $password]);
+            echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $email, "email" => $password]);
 
         }
 
