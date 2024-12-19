@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Register.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -20,13 +20,8 @@ function Register() {
   const lNameRef = useRef();
   const CNoRef = useRef();
 
-  const [isShowPassword, setIsShowPassword] = useState(false);
   const [status, setStatus] = useState('idle');
   const navigate = useNavigate();
-
-  const toggleShowPassword = useCallback(() => {
-    setIsShowPassword((prev) => !prev);
-  }, []);
 
   const handleOnChange = (event, type) => {
     const value = event.target.value;
@@ -58,50 +53,26 @@ function Register() {
     }
   };
 
-  const checkFields = () => {
-    if (email && password && firstName && lastName && contactNo) {
-      handleRegister();
-    } else {
-      if (!email) emailRef.current.focus();
-      else if (!password) passwordRef.current.focus();
-      else if (!firstName) fNameRef.current.focus();
-      else if (!lastName) lNameRef.current.focus();
-      else if (!contactNo) CNoRef.current.focus();
-    }
-  };
-
-  const resetInputs = () => {
-    setEmail('');
-    setPassword('');
-    setFirstName('');
-    setMiddleName('');
-    setLastName('');
-    setContactNo('');
-  };
-
   const handleRegister = async (e) => {
     e.preventDefault();
-    const data = { email, password, firstName, middleName, lastName, contactNo };
     setStatus('loading');
 
     try {
-        // Send POST request to PHP
-        const response = await axios.post('http://localhost/register', {
-          name: firstName,
-          email: email,
-          password: password,
-          conf_pass: confirmpassword
-        });
-  
-        // Handle response from PHP
-        console.log(response.data);  // Assuming the PHP response contains a 'message' field
-        navigate("/")
-  
-      } catch (error) {
-        console.error('Error sending request:', error);
-        setMessage('An error occurred while sending the request.');
-      }
-    };
+      const response = await axios.post('http://localhost/register', {
+        name: firstName,
+        email: email,
+        password: password,
+        conf_pass: confirmpassword
+      });
+
+      console.log(response.data);  
+      navigate("/")
+
+    } catch (error) {
+      console.error('Error sending request:', error);
+      setMessage('An error occurred while sending the request.');
+    }
+  };
 
   return (
     <div className="register-container">
@@ -139,26 +110,19 @@ function Register() {
           <div className="form-group2">
             <input
               ref={passwordRef}
-              type={isShowPassword ? 'text' : 'password'}
+              type="password"
               value={password}
               onChange={(e) => handleOnChange(e, 'password')}
               placeholder="Password"
               required
               className="form-input2"
             />
-            <button
-              type="button"
-              className="password-toggle2"
-              onClick={toggleShowPassword}
-            >
-              {isShowPassword ? '👁️' : '👁️‍🗨️'}
-            </button>
           </div>
 
           <div className="form-group2">
             <input
               ref={passwordRef}
-              type={isShowPassword ? 'text' : 'password'}
+              type="password"
               value={confirmpassword}
               onChange={(e) => handleOnChange(e, 'confirmpassword')}
               placeholder="Confirm Password"
