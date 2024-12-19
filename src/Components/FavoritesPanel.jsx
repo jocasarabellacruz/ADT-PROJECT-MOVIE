@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './FavoritesPanel.css';
+import { FaHeart } from 'react-icons/fa';
+
 
 const FavoritesPanel = ({ globalFavorites, setGlobalFavorites }) => {
   const [userId, setUserId] = useState(null);
@@ -38,36 +40,38 @@ const FavoritesPanel = ({ globalFavorites, setGlobalFavorites }) => {
     navigate(`/view/${movieId}`);
   };
 
-  if (globalFavorites.length === 0) {
-    return <div className="favorites-panel">No favorites added yet.</div>;
-  }
-
   return (
     <div className="favorites-panel">
-      <h2 className="favorites-header">Favorites</h2>
-      <div className="favorites-cards">
-        {globalFavorites.map((movie) => (
-          <div 
-            key={movie.movieId} 
-            className="favorite-card"
-            onClick={() => handleCardClick(movie.movieId)}
-            style={{ cursor: 'pointer' }}
-          >
-            <img 
-              src={movie.posterPath || 'default-poster.jpg'} 
-              alt={movie.title} 
-              className="favorite-poster" 
-            />
-            <h3 className="favorite-title">{movie.title}</h3>
-            <button
-              className="remove-favorite"
-              onClick={(e) => handleRemoveFavorite(e, movie.movieId)}
+      <h2 className="favorites-header"><FaHeart className="movies-icon" />Favorites</h2>
+      {(!globalFavorites || globalFavorites.length === 0) ? (
+        <div className="no-favorites-message">
+          <p>No favorites added yet.</p>
+        </div>
+      ) : (
+        <div className="favorites-cards">
+          {globalFavorites.map((movie) => (
+            <div 
+              key={movie.movieId} 
+              className="favorite-card"
+              onClick={() => handleCardClick(movie.movieId)}
+              style={{ cursor: 'pointer' }}
             >
-              Remove
-            </button>
-          </div>
-        ))}
-      </div>
+              <img 
+                src={movie.posterPath || 'default-poster.jpg'} 
+                alt={movie.title} 
+                className="favorite-poster" 
+              />
+              <h3 className="favorite-title">{movie.title}</h3>
+              <button
+                className="remove-favorite"
+                onClick={(e) => handleRemoveFavorite(e, movie.movieId)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
