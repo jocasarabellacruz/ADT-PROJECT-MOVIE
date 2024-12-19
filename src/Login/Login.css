@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #1e1e2f;
+  background-color: #121212;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -12,11 +12,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ee78bb, #e656a3, #b71f64);
+ background-color: #121212;
 }
 
 .login-card1 {
-  background: rgba(255, 255, 255, 1);
+ background-color: #282828;
   border-radius: 12px;
   padding: 30px;
   width: 100%;
@@ -30,14 +30,14 @@ body {
 }
 
 .login-header1 h1 {
-  color: #e656a3;
+  color: #FFB2CF;
   font-size: 24px;
   margin-bottom: 5px;
   font-weight: 600;
 }
 
 .login-header1 p {
-  color: #666;
+  color: #fff;
   font-size: 14px;
 }
 
@@ -49,16 +49,21 @@ body {
 
 .form-group1 {
   position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .form-input1 {
-  width: 80%;
+  width: 100%;
   padding: 12px;
+  padding-right: 40px;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.2s ease;
   background: white;
+  box-sizing: border-box;
 }
 
 .form-input1:focus {
@@ -69,16 +74,20 @@ body {
 
 .password-toggle1 {
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
   color: #666;
   padding: 0;
   width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 
 .forgot-password1 {
@@ -88,7 +97,7 @@ body {
 }
 
 .forgot-link {
-  color: #e656a3;
+  color: #FFB2CF;
   text-decoration: none;
   font-size: 12px;
   transition: color 0.2s ease;
@@ -99,7 +108,7 @@ body {
 }
 
 .login-button {
-  background: #e656a3;
+  background: #fe689d;
   color: white;
   padding: 12px;
   border: none;
@@ -114,6 +123,7 @@ body {
 .login-button:hover {
   opacity: 0.95;
   transform: translateY(-1px);
+  background-color: #f54784;
 }
 
 .login-button:disabled {
@@ -142,11 +152,11 @@ body {
   text-align: center;
   margin-top: 20px;
   font-size: 13px;
-  color: #666;
+  color: #fff;
 }
 
 .register-link {
-  color: #e656a3;
+  color: #FFB2CF;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;

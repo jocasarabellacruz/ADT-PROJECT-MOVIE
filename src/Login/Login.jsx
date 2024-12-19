@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef } from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,14 +11,9 @@ function Login() {
   const [isFieldsDirty, setIsFieldsDirty] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [isShowPassword, setIsShowPassword] = useState(false);
   const [status, setStatus] = useState('idle');
 
   const navigate = useNavigate();
-
-  const handleShowPassword = useCallback(() => {
-    setIsShowPassword((value) => !value);
-  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -60,26 +55,18 @@ function Login() {
               required
               className="form-input1"
             />
-            <i className="fas fa-envelope input-icon"></i>
           </div>
 
           <div className="form-group1">
             <input
               ref={passwordRef}
-              type={isShowPassword ? 'text' : 'password'}
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required
               className="form-input1"
             />
-            <button
-              type="button"
-              className="password-toggle1"
-              onClick={handleShowPassword}
-            >
-              {isShowPassword ? '👁️' : '👁️‍🗨️'}
-            </button>
           </div>
 
           <div className="forgot-password1">
