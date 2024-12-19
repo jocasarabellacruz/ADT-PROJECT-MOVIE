@@ -11,6 +11,10 @@
   margin-bottom: 20px;
 }
 
+.body{
+  background-color: #121212;
+}
+
 .movie-info {
   color: white;
   font-size: 1.1em;
@@ -38,6 +42,9 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
 }
 
 .cast-item {
@@ -56,17 +63,47 @@
   color: #ccc;
 }
 
+.cast-item h3{
+  color: #fff;
+}
+
+.cast-item p{
+  color: #000;
+}
+
+.poster-image{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .video-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .video-title {
   color: white;
   text-align: center;
   margin-top: 10px;
+}
+
+.video-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFB2CF;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.video-frame {
+  width: 100%;
+  height: 300px;
+  border: none;
 }
 
 .admin-controls {
@@ -181,7 +218,6 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 10px;
   width: 100%;
@@ -189,7 +225,46 @@
   margin-top: 30px;
   border: 10px solid #FFB2CF;
   min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+.movie-cardto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+.poster-container, .details {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.photo-card {
+
+  box-sizing: border-box;      /* Ensures padding and margin are included in the width */
+  display: flex;
+  flex-direction: column;      /* Aligns content vertically within the card */
+  align-items: center;         /* Centers content within each card */
+} 
 
 .cast-item, .photo-card, .video-card {
   background-color: #FFB2CF;
@@ -290,4 +365,10 @@
   width: 18px;
   height: 18px;
   cursor: pointer;
+}
+
+.cast-header {
+  text-align: center;
+  color: white;
+  margin: 40px 0 20px;
 }

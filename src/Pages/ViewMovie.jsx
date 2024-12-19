@@ -106,7 +106,7 @@ const ViewMovie = () => {
           movieId: movieId,
           userId: userId,
           name: member.name,
-          characterName: member.character,
+          characterName: member.characterName,
           url: member.url
         })),
 
@@ -222,9 +222,12 @@ const ViewMovie = () => {
       )}
 
       <div className="movie-container">
-        <div className="movie-cardto" style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url(${movieDetails.backdrop_path})`
-        }}>
+        <div 
+          className="movie-cardto" 
+          style={{
+            backgroundImage: `url(${movieDetails.backdrop_path})`
+          }}
+        >
           <div className="poster-container">
             <img src={movieDetails.poster_path} alt={movieDetails.title} className="poster-img" />
           </div>
@@ -313,6 +316,7 @@ const ViewMovie = () => {
                   />
                   <input
                     type="text"
+                    
                     value={member.characterName}
                     onChange={(e) => {
                       const updatedCast = [...movieDetails.cast];
@@ -329,8 +333,8 @@ const ViewMovie = () => {
                 </>
               ) : (
                 <>
-                  <h3>{member.name}</h3>
-                  <p>{member.characterName}</p>
+                  <h3 className="charName">{member.name}</h3>
+                  <p >{member.characterName}</p>
                 </>
               )}
             </div>
