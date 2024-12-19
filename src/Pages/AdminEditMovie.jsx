@@ -51,21 +51,21 @@ const AdminEditMovie = () => {
           ...data,
           poster_path: data.poster_path
             ? `https://image.tmdb.org/t/p/original${data.poster_path}`
-            : null,
+            : "https://th.bing.com/th/id/OIP.lEADQMbDYsJ97C5U-r8j5AHaGo?rs=1&pid=ImgDetMain",
           backdrop_path: data.backdrop_path
             ? `https://image.tmdb.org/t/p/original${data.backdrop_path}`
-            : null,
+            : 'https://th.bing.com/th/id/OIP.lEADQMbDYsJ97C5U-r8j5AHaGo?rs=1&pid=ImgDetMain',
           cast: data.cast.slice(0, 9).map((member) => ({
             ...member,
             profile_path: member.profile_path
               ? `https://image.tmdb.org/t/p/original${member.profile_path}`
-              : null,
+              : 'https://images.squarespace-cdn.com/content/v1/622134fd4170e91e1ee24e8d/f248d961-96bb-4f96-a9b6-3b62664136e8/Candidate.png',
           })),
           posters: data.posters.slice(0, 9).map((poster) => ({ 
             ...poster,
             file_path: poster.file_path
               ? `https://image.tmdb.org/t/p/original${poster.file_path}`
-              : null,
+              : 'https://th.bing.com/th/id/OIP.lEADQMbDYsJ97C5U-r8j5AHaGo?rs=1&pid=ImgDetMain',
           })),
           results: data.results.slice(0, 9).map((result) => ({
             key: result.key

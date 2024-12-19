@@ -8,7 +8,7 @@ body {
 }
 
 .wholecont{
-    background-color: #1a1a1d;
+    background-color: transparent;
     width: 100%;
   height: 100%; 
   
@@ -136,7 +136,6 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -144,6 +143,21 @@ h2 {
     margin-top: 30px;
     border: 10px solid #FFB2CF;
     min-height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .movie-cardto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(0.3);
   }
   
   .poster-container {
@@ -153,6 +167,8 @@ h2 {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+    z-index: 1;
   }
   
   .details {
@@ -161,6 +177,9 @@ h2 {
     flex-direction: column;
     gap: 10px;
     color: white;
+    margin-right: 20px;
+    position: relative;
+    z-index: 1;
   }
   
   .poster-img {
@@ -233,10 +252,12 @@ h2 {
   }
   .cast-section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Create a grid with responsive columns */
-    gap: 20px; /* Space between cards */
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
   }
   
   .cast-item {
@@ -333,11 +354,13 @@ h2 {
 
 
   .photo-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Creates a responsive grid */
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    justify-items: center;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
   }
   
   .photo-card {
@@ -350,7 +373,7 @@ h2 {
   
   .poster-image {
     width: 100%;
-    height: auto;
+    height: 300px;
     object-fit: cover; /* Ensures the image fills the card while maintaining aspect ratio */
   }
   
@@ -360,31 +383,27 @@ h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .video-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .video-card {
-    flex: 1 1 600px;
-    max-width: 600px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background: #FFB2CF;
+    background-color: #FFB2CF;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-  
-  .video-card:hover {
-    transform: scale(1.05);
   }
   
   .video-frame {
     width: 100%;
-    height: 300px; /* Increased height for a larger display */
+    height: 300px;
     border: none;
   }
   
@@ -427,13 +446,14 @@ h2 {
   }
 
 .input-group {
-  margin: 10px 0;
+  margin: 10px 10px;
 }
 
 .input-group label {
   display: block;
   color: white;
   margin-bottom: 5px;
+  
 }
 
 .input-group input,
@@ -444,6 +464,7 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   color: white;
+  margin-right: 20px;
 }
 
 .title-input {
@@ -502,5 +523,11 @@ h2 {
 .featureMovie label {
   font-size: 16px;
   color: #333;
+}
+
+.cast-header {
+  text-align: center;
+  color: white;
+  margin: 40px 0 20px;
 }
 

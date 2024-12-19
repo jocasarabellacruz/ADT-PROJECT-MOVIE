@@ -11,19 +11,19 @@ const AdminSearchMovie = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const defaultPosterPath = "https://th.bing.com/th/id/OIP.lEADQMbDYsJ97C5U-r8j5AHaGo?rs=1&pid=ImgDetMain";
+
   const handleSearch = async () => {
     try {
-    
       const response = await axios.get(`http://localhost/admin_search?query=${query}`);
       
-      console.log(response.data.results[0].original_title); 
       if (response.data.results) {
-        setResults(response.data.results); 
+        setResults(response.data.results);
+        setError(null);
       } else {
-        setResults([]); 
-        setError('No results found.'); 
+        setResults([]);
+        setError('No results found.');
       }
-      setError(null); 
     } catch (err) {
       setError('Error fetching data. Please try again.');
       console.error(err);
@@ -40,7 +40,7 @@ const AdminSearchMovie = () => {
         <h1>Admin Search Movie</h1>
         <p className="adminSearchDescription">Find and manage movies in the TMDB database.</p>
         <input
-        className='adminSearchinput'
+          className='adminSearchinput'
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -58,8 +58,12 @@ const AdminSearchMovie = () => {
             className="movie-card1" 
             onClick={() => handleCardClick(movie.id)}
           >
-            
-            <img className="movie-poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+            <img 
+              className="movie-poster" 
+              src={movie.poster_path ? 
+                `https://image.tmdb.org/t/p/original${movie.poster_path}` : defaultPosterPath} 
+              alt={movie.title} 
+            />
             <h2>{movie.title}</h2>
             {/* <p>{movie.overview}</p> */}
           </div>
