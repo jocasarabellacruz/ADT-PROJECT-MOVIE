@@ -10,10 +10,10 @@ const Sidebar = () => {
       </div>
       <div className="sidebar-content">
         <ul>
-          <li><Link to="/main/movies">Home</Link></li>
+          <li><Link to="/home">Home</Link></li>
           <li><a onClick={() => localStorage.removeItem('accessToken')}>Logout</a></li>
         </ul>
-      </div>
+      </div>z
     </nav>
   );
 };
