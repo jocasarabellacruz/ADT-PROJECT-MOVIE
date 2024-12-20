@@ -46,12 +46,13 @@ function Login() {
 
     try {
       const response = await axios.post('http://localhost/login', data);
-      
+      console.log(response.data);
       if (response.data.status === 'success') {
+        localStorage.setItem('accessToken', response.data.token);
         navigate("/home");
-        console.log(response.data);
+        
       } else {
-        alert(response.data.message);
+        alert(response.data.message, "error");
       }
     } catch (error) {
       alert('Login failed. Please check your credentials.');
