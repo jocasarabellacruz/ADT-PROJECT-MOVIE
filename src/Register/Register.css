@@ -148,3 +148,85 @@
 body{
   background-color: #121212;
 }
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.form-group2 {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.login-link {
+  color: #FFB2CF;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #FFB2CF;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  color: #f54784;
+}
+
+.register-container.light {
+  background-color: #f5f5f5;
+}
+
+.register-container.dark {
+  background-color: #121212;
+}
+
+.register-card.light {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-card.dark {
+  background-color: #282828;
+}
+
+.register-card.light h1 {
+  color: #333;
+}
+
+.register-card.light p {
+  color: #666;
+}
+
+.form-input2.light {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.form-input2.dark {
+  background-color: #404040;
+  border: 1px solid #404040;
+  color: #fff;
+}
+
