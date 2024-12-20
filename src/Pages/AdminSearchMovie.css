@@ -74,31 +74,54 @@
 }
 
 .movie-list {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
-  gap: 20px; /* Space between movie cards */
-  justify-content: center; /* Center movie cards */
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
   background-color: #282828;
   border-radius: 12px;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  
+  box-sizing: border-box;
 }
 
+@media (max-width: 1200px) {
+  .movie-list {
+    max-width: 900px;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-list {
+    grid-template-columns: 1fr;
+  }
+}
 
 .movie-card1 {
   background: #FFB2CF;
   border-radius: 12px;
   padding: 10px;
+  width: 100%;
   height: 100%;
-  width: 200px; /* Fixed card width */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   transition: transform 0.3s ease;
   cursor: pointer;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .movie-card:hover {
@@ -106,11 +129,10 @@
 }
 
 .movie-poster {
-  width: 100%; /* Fit poster to card width */
-  height: 300px; /* Fixed height for uniformity */
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  
+  margin-bottom: 10px;
 }
 
 .movie-card1 h2 {
@@ -125,4 +147,45 @@
   height: 60px; /* Limit description height */
   overflow: hidden; /* Hide overflow text */
   text-overflow: ellipsis;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #282828;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.pagination-button {
+  background-color: #404040;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #fe689d;
+}
+
+.pagination-button.active {
+  background-color: #fe689d;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-top: 10px;
 }
