@@ -8,7 +8,6 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, Cookie");
 header("Access-Control-Allow-Credentials: true");
 require("codes/connection.php");
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the JSON data from the request body
     $data = json_decode(file_get_contents("php://input"));
@@ -47,17 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $role = "User";
 
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         // Insert new user into the database
         $insert_stmt = $conn->prepare("INSERT INTO users (email, password, name, role) VALUES (?, ?, ?, ?)");
-        $insert_stmt->bind_param("ssss", $email, $password, $name, $role);
+        $insert_stmt->bind_param("ssss", $email, $hashed_password, $name, $role);
 
         if ($insert_stmt->execute()) {
             echo json_encode([
                 "status" => "success",
                 "message" => "Account created successfully!",
                 "name" => $name,
-                "email" => $email,
-                "password" => $password // Include password in response if necessary
+                "email" => $email
             ]);
         } else {
             echo json_encode([

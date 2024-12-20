@@ -17,36 +17,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $data->email;
         $password = $data->password;
 
-        $stmt = $conn->prepare("Select * from users where email = ?");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result(); // Get the result of the query
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            if($user["password"] == $password){
-
+            
+            // Verify the password using password_verify()
+            if (password_verify($password, $user["password"])) {
                 $_SESSION["USER_ID"] = $user["userId"];
                 $uid = $_SESSION["USER_ID"];
-                echo json_encode(["status" => "success", "message" => "Data received", "email" => $email, "pass" => $password, 'ID' => $uid]);
-
+                echo json_encode([
+                    "status" => "success",
+                    "message" => "Login successful",
+                    "email" => $email,
+                    "user_id" => $uid
+                ]);
             } else {
-
-                echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $email, "email" => $password]);
-
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Username or password incorrect!"
+                ]);
             }
         } else {
-
-            echo json_encode(["status" => "error", "message" => "Username or Password Incorrect!", "name" => $email, "email" => $password]);
-
+            echo json_encode([
+                "status" => "error",
+                "message" => "Username or password incorrect!"
+            ]);
         }
 
+        // Close statement
+        $stmt->close();
     } else {
-
-        echo json_encode(["status" => "error", "message" => "Missing name or email"]);
-        
+        echo json_encode([
+            "status" => "error",
+            "message" => "Missing email or password"
+        ]);
     }
 } else {
-    echo json_encode(["status" => "error", "message" => "Invalid request method"]);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Invalid request method"
+    ]);
 }
 ?>
