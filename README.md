@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Movie-Site
+A Movie Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Prerequisites
+- Node.js
+- Composer 
+- XAMPP
 
-## Available Scripts
+## Setup
+1. Clone the repository
+2. Backend Setup:
+   - Place the backend folder in your XAMPP htdocs directory
+   - Run `composer install` in the backend directory
+   - Create a `.env` file in the backend directory with your TMDB API key:
+     ```
+     TMDB_API_KEY=your_api_key_here
+     ```
+   - Start XAMPP Apache and MySQL services
+   - The database will be automatically created on first run
 
-In the project directory, you can run:
+3. Frontend Setup:
+   - Navigate to the frontend directory
+   - Run `npm install`
+   - Run `npm start` to start the development server
 
-### `npm start`
+## API Endpoints
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Authentication
+- **POST /login**
+  - Login user
+  - Body: `{ email: string, password: string }`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **POST /register**
+  - Register new user
+  - Body: `{ name: string, email: string, password: string, conf_pass: string }`
 
-### `npm test`
+### Movies
+- **GET /get_movies**
+  - Get all movies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **GET /get_featured**
+  - Get featured movies
 
-### `npm run build`
+- **GET /get_movie**
+  - Get single movie details
+  - Query: `?movieId=number`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **POST /add_movie**
+  - Add new movie
+  - Body: Movie details including cast, photos, and videos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **PUT /update_movie**
+  - Update existing movie
+  - Query: `?movieId=number`
+  - Body: Updated movie details
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **DELETE /delete_movie**
+  - Delete a movie
+  - Query: `?movieId=number`
 
-### `npm run eject`
+### Search
+- **GET /admin_search**
+  - Search movies in TMDB database
+  - Query: `?query=string`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **POST /search_movie**
+  - Search local movie database
+  - Body: `{ search: string }`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Admin
+- **GET /admin_edit**
+  - Get movie details for editing
+  - Query: `?tmbd_id=number`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### User
+- **GET /get_user**
+  - Get current user details
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Favorites
+- **GET /get_favorite**
+  - Get user's favorite movies
+  - Query: `?userId=number`
 
-## Learn More
+- **POST /add_favorite**
+  - Add movie to favorites
+  - Body: `{ movieId: number, userId: number }`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **DELETE /remove_favorite**
+  - Remove movie from favorites
+  - Query: `?movieId=number&userId=number`
