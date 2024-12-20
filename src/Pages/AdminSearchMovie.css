@@ -1,11 +1,11 @@
 .container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column; 
   align-items: center;
-  justify-content: flex-start; /* Start from the top */
+  justify-content: flex-start; 
   background-color: #121212;
-  padding: 20px; /* Add padding for breathing space */
+  padding: 20px; 
 }
 
 .search-card {
@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 360px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px; /* Space below the search card */
+  margin-bottom: 20px; 
   
 }
 
@@ -144,8 +144,8 @@
 .movie-card p {
   font-size: 14px;
   color: #666;
-  height: 60px; /* Limit description height */
-  overflow: hidden; /* Hide overflow text */
+  height: 60px; 
+  overflow: hidden; 
   text-overflow: ellipsis;
 }
 
