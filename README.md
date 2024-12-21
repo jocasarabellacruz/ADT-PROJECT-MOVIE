@@ -1,5 +1,4 @@
-# Movie-Site
-A Movie Site
+# BellaTV
 
 ## Prerequisites
 - Node.js
