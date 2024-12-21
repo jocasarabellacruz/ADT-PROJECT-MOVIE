@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <Link to="/" className="logo">MovieSite</Link>
+        <Link to="/" className="logo">BellaTV</Link>
       </div>
       <div className="sidebar-content">
         <ul>

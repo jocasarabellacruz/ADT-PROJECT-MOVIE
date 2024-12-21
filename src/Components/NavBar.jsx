@@ -14,7 +14,7 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <Link to="/home" className="logo">MovieSite</Link>
+        <Link to="/home" className="logo">BellaTV</Link>
       </div>
       <div className="sidebar-content">
         <ul>
